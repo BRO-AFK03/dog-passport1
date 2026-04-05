@@ -436,7 +436,28 @@
             }
         }
 
-        .section-card {
+        .section-card {function handleCertPhotoClick() {
+    if (document.getElementById('passport').classList.contains('edit-mode')) {
+        document.getElementById('cert-file-input').click();
+    } else {
+        alert('Включите режим редактирования!');
+    }
+}
+
+function loadCertPhoto(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.getElementById('cert-photo');
+            const placeholder = document.getElementById('cert-photo-placeholder');
+            img.src = e.target.result;
+            img.style.display = 'block';
+            placeholder.style.display = 'none';
+        }
+        reader.readAsDataURL(file);
+    }
+}
             transition: transform 0.2s;
         }
     </style>
